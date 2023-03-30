@@ -5,7 +5,7 @@ import {
 
 // check if TOTP token is valid
 // returns boolean
-export async function chkToken(
+async function chkToken(
   secret: string,
   token: string | number,
 ): Promise<boolean> {
@@ -24,7 +24,7 @@ export async function chkToken(
   return false;
 }
 
-export async function genToken(
+async function genToken(
   key: CryptoKey | string,
   timestamp: number,
 ): Promise<number> {
@@ -62,8 +62,8 @@ async function getKey(secret: string): Promise<CryptoKey> {
   );
 }
 
-export function genSecret(length = 20): string {
+function genSecret(length = 20): string {
   const buffer = crypto.getRandomValues(new Uint8Array(length));
-  const encoded = b32encode(buffer);
+  const encoded = b32encode(buffer).replace(/=/g, "");
   return encoded;
 }
