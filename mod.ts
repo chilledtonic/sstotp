@@ -67,3 +67,11 @@ function genSecret(length = 20): string {
   const encoded = b32encode(buffer).replace(/=/g, "");
   return encoded;
 }
+
+const sstotp = {
+  genSecret,
+  genToken,
+  chkToken
+}
+
+export default sstotp;
